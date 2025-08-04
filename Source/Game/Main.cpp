@@ -13,12 +13,14 @@
 #include "Core/File.h"
 #include "Engine.h"
 
+
 #include "Game/Player.h"
 #include "Game/SpaceGame.h"
 
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <Renderer/Texture.h>
 
 int main(int argc, char* argv[]) {
 
@@ -47,6 +49,9 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
+	std::shared_ptr<viper::Texture> texture = std::make_shared<viper::Texture>();
+	texture->Load("Idle_player1_2.png", viper::GetEngine().GetRenderer());
+
     // MAIN LOOP
     while (!quit) {
         while (SDL_PollEvent(&e)) {
@@ -55,17 +60,19 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        viper::GetEngine().Update();
-        game->Update(viper::GetEngine().GetTime().GetDeltaTime());
+        //viper::GetEngine().Update();
+        //game->Update(viper::GetEngine().GetTime().GetDeltaTime());
 
-        if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
+        //if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
-        // draw
-        viper::vec3 color{ 0, 0, 0 };
-        viper::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
-        viper::GetEngine().GetRenderer().Clear();
+        //// draw
+        //viper::vec3 color{ 0, 0, 0 };
+        //viper::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
+        //viper::GetEngine().GetRenderer().Clear();
 
-        game->Draw(viper::GetEngine().GetRenderer());
+        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
+
+        //game->Draw(viper::GetEngine().GetRenderer());
 
         viper::GetEngine().GetRenderer().Present();
     }

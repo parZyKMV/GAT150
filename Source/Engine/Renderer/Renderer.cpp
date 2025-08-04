@@ -1,4 +1,6 @@
 #include "Renderer.h"
+#include "Texture.h"
+
 
 namespace viper {
     bool Renderer::Initialize() {
@@ -44,6 +46,20 @@ namespace viper {
         }
 
         return true;
+    }
+
+    void Renderer::DrawTexture(Texture* texture, float x, float y)
+    {
+        vec2 size = texture->getSize();
+
+        SDL_FRect destRect;
+        destRect.x = x;
+        destRect.y = y;
+        destRect.w = size.x;
+        destRect.h = size.y;
+
+        // https://wiki.libsdl.org/SDL3/SDL_RenderTexture
+        SDL_RenderTexture(m_renderer, texture->m_texture, NULL, &destRect);
     }
 
     void Renderer::SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
