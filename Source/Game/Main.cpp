@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
     viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
 
-	auto texture = viper::ResourcesManager::Instance().Get<viper::Texture>("Idle_player1_2.png", viper::GetEngine().GetRenderer());
+	auto texture = viper::Resourcess().GetWIthId<viper::Texture>("Textures/blue_01.png", viper::GetEngine().GetRenderer());
 
     // create stars
     std::vector<viper::vec2> stars;
@@ -75,7 +75,9 @@ int main(int argc, char* argv[]) {
         viper::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
         viper::GetEngine().GetRenderer().Clear();
 
-        //viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
+
+        
+        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 4, 90);
 
         game->Draw(viper::GetEngine().GetRenderer());
 

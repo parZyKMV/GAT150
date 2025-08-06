@@ -24,9 +24,9 @@ bool SpaceGame::Initialize()
     m_uiFont = std::make_shared<viper::Font>();
     m_uiFont->Load("arcadeclassic.ttf", 48);*/
 
-    m_titleText = std::make_unique<viper::Text>(viper::ResourcesManager::Instance().Get<viper::Font>("arcadeclassic.ttf", 48));
-    m_scoreText = std::make_unique<viper::Text>(viper::ResourcesManager::Instance().Get<viper::Font>("arcadeclassic.ttf", 48));
-    m_livesText = std::make_unique<viper::Text>(viper::ResourcesManager::Instance().Get<viper::Font>("arcadeclassic.ttf", 48));
+    m_titleText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("title_font", "arcadeclassic.ttf", 48));
+    m_scoreText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("ui_font", "arcadeclassic.ttf", 48));
+    m_livesText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("ui_font","arcadeclassic.ttf", 48));
         
     return true;
 }
