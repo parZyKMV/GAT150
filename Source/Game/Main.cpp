@@ -11,6 +11,7 @@
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
 #include "Core/File.h"
+#include "Resources/ResourcesManager.h"
 #include "Engine.h"
 
 
@@ -26,6 +27,8 @@ int main(int argc, char* argv[]) {
 
     viper::file::SetCurrentDirectory("Assets");
     
+
+
     // initialize engine
     viper::GetEngine().Initialize();
 
@@ -40,6 +43,8 @@ int main(int argc, char* argv[]) {
     viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
     viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
 
+	auto texture = viper::ResourcesManager::Instance().Get<viper::Texture>("Idle_player1_2.png", viper::GetEngine().GetRenderer());
+
     // create stars
     std::vector<viper::vec2> stars;
     for (int i = 0; i < 100; i++) {
@@ -49,8 +54,8 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
-	std::shared_ptr<viper::Texture> texture = std::make_shared<viper::Texture>();
-	texture->Load("Idle_player1_2.png", viper::GetEngine().GetRenderer());
+	/*std::shared_ptr<viper::Texture> texture = std::make_shared<viper::Texture>();
+	texture->Load("Idle_player1_2.png", viper::GetEngine().GetRenderer());*/
 
     // MAIN LOOP
     while (!quit) {
@@ -60,19 +65,19 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        //viper::GetEngine().Update();
-        //game->Update(viper::GetEngine().GetTime().GetDeltaTime());
+        viper::GetEngine().Update();
+        game->Update(viper::GetEngine().GetTime().GetDeltaTime());
 
-        //if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
+        if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_ESCAPE)) quit = true;
 
-        //// draw
-        //viper::vec3 color{ 0, 0, 0 };
-        //viper::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
-        //viper::GetEngine().GetRenderer().Clear();
+        // draw
+        viper::vec3 color{ 0, 0, 0 };
+        viper::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
+        viper::GetEngine().GetRenderer().Clear();
 
-        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
+        //viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30);
 
-        //game->Draw(viper::GetEngine().GetRenderer());
+        game->Draw(viper::GetEngine().GetRenderer());
 
         viper::GetEngine().GetRenderer().Present();
     }

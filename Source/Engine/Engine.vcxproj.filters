@@ -27,6 +27,9 @@
     <Filter Include="Source\Framework">
       <UniqueIdentifier>{cd938708-50b3-49ea-aacb-400b2d806a2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Resources">
+      <UniqueIdentifier>{d53b7de7-8089-41ce-9ed4-1658fe58f7ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -132,6 +135,12 @@
     </ClInclude>
     <ClInclude Include="Renderer\Texture.h">
       <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Resources.h">
+      <Filter>Source\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourcesManager.h">
+      <Filter>Source\Resources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

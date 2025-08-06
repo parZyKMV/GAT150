@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
+#include "Resources/Resources.h"
 #include "../Math/Vector2.h"
 #include <vector>
 
 namespace viper {
-	class Texture {
+	class Texture : public Resources {
 	public:
 		Texture() = default;
 		~Texture();

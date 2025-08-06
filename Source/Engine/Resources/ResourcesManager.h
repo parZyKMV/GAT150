@@ -1,0 +1,55 @@
+#pragma once
+#include "Core/StringHelper.h"
+#include "Resources.h"
+#include <string>
+#include <map>
+
+namespace viper {
+	class ResourcesManager {
+	public:
+		template<typename T, typename ... TArge>
+		res_t<T> Get(const std::string& name, TArge&& ... arge);
+
+		static ResourcesManager& Instance() {
+			static ResourcesManager instance;
+			return instance;
+		}
+	
+	private: 
+		ResourcesManager() = default;
+	private:
+		std::map<std::string, res_t<Resources>> m_resources;
+	};
+
+	template<typename T, typename ... TArge>
+	inline res_t<T> ResourcesManager::Get(const std::string& name, TArge&& ... arge) {
+		std::string key = tolower(name);
+		auto iter = m_resources.find(key);
+		//check if the resource exists
+		if (iter != m_resources.end()) {
+			//check if the resource is of type T
+			auto base = iter->second;
+			// if the resource is not of type T, return an empty res_t<T>
+			auto resource = std::dynamic_pointer_cast<T>(base);
+			// if the resource is not of type T, print an error message and return an empty res_t<T>
+			if(resource == nullptr) {
+				std::cerr << "Resource with name '" << key << "' is not of type " << typeid(T).name() << std::endl;
+				return res_t<T>{};
+			}
+			// if the resource is of type T, return it
+			return resource;
+		}
+
+		//load the resource from file
+		res_t<T> resource = std::make_shared<T>();
+		if (resource->Load(key, std::forward<TArge>(arge)...) == false) {
+			std::cerr << "Failed to load resource: " << key << std::endl;
+			return res_t<T>{};
+		}
+		
+		//add the resource to the map
+		m_resources[key] = resource;
+
+		return resource;
+	}
+}
