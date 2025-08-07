@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
     viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
 
-	auto texture = viper::Resourcess().GetWIthId<viper::Texture>("Textures/blue_01.png", viper::GetEngine().GetRenderer());
+	auto texture = viper::Resourcess().Get<viper::Texture>("Textures/blue_01.png", viper::GetEngine().GetRenderer());
 
     // create stars
     std::vector<viper::vec2> stars;
@@ -57,6 +57,7 @@ int main(int argc, char* argv[]) {
 	/*std::shared_ptr<viper::Texture> texture = std::make_shared<viper::Texture>();
 	texture->Load("Idle_player1_2.png", viper::GetEngine().GetRenderer());*/
 
+	float rotate = 0.0f;
     // MAIN LOOP
     while (!quit) {
         while (SDL_PollEvent(&e)) {
@@ -75,9 +76,9 @@ int main(int argc, char* argv[]) {
         viper::GetEngine().GetRenderer().SetColor(color.r, color.g, color.b);
         viper::GetEngine().GetRenderer().Clear();
 
-
+		rotate += 0.1f * viper::GetEngine().GetTime().GetDeltaTime();
         
-        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 4, 90);
+        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 90, 4);
 
         game->Draw(viper::GetEngine().GetRenderer());
 

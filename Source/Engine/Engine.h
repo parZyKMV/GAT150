@@ -37,5 +37,4 @@ namespace viper {
 	};
 
 	inline Engine& GetEngine() { return Engine::Instance(); }
-	
 }

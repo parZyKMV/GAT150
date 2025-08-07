@@ -12,7 +12,7 @@ namespace viper {
 			static T instance; // Guaranteed to be destroyed.
 			return instance;   // Instantiated on first use.
 		}
-	private:
+	protected:
 		Singleton() = default; // Private constructor to prevent instantiation
 
 	};

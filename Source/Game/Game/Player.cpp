@@ -11,6 +11,7 @@
 #include "Renderer/Model.h"
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
+#include "Resources/ResourcesManager.h"
 
 void Player::Update(float dt)
 {
@@ -47,10 +48,10 @@ void Player::Update(float dt)
 
         viper::GetEngine().GetAudio().PlaySound("clap");
 
-        std::shared_ptr<viper::Model> model = std::make_shared<viper::Model>(GameData::shipPoints, viper::vec3{ 1.0f, 1.0f, 1.0f });
+        
         // spawn rocket at player position and rotation
         viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-        auto rocket = std::make_unique<Rocket>(transform, model);
+        auto rocket = std::make_unique<Rocket>(transform, viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
         rocket->speed = 1500.0f;
         rocket->lifespan = 1.5f;
         rocket->name = "rocket";

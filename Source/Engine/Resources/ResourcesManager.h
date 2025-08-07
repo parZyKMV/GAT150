@@ -12,7 +12,12 @@ namespace viper {
 		res_t<T> Get(const std::string& name, Arge&& ... arge);
 
 		template<typename T, typename ... Arge>
-		res_t<T> GetWIthId(const std::string& id, Arge&& ... arge);
+		res_t<T> GetWIthId(const std::string& id, const std::string& name, Arge&& ... arge);
+
+		/*static ResourcesManager& Instance() {
+			static ResourcesManager instance;
+			return instance;
+		}*/
 	
 	private: 
 		friend class Singleton<ResourcesManager>;
@@ -28,10 +33,10 @@ namespace viper {
 	}
 
 	template<typename T, typename ...Arge>
-	inline res_t<T> ResourcesManager::GetWIthId(const std::string& id, Arge && ...arge)
+	inline res_t<T> ResourcesManager::GetWIthId(const std::string& id, const std::string& name, Arge&& ... arge)
 	{
-		std::string name = tolower(id);
-		auto iter = m_resources.find(name);
+		std::string key = tolower(id);
+		auto iter = m_resources.find(key);
 		//check if the resource exists
 		if (iter != m_resources.end()) {
 			//check if the resource is of type T
@@ -40,7 +45,7 @@ namespace viper {
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			// if the resource is not of type T, print an error message and return an empty res_t<T>
 			if (resource == nullptr) {
-				std::cerr << "Resource with name '" << name << "' is not of type " << typeid(T).name() << std::endl;
+				std::cerr << "Resource with name '" << key << "' is not of type " << typeid(T).name() << std::endl;
 				return res_t<T>{};
 			}
 			// if the resource is of type T, return it
@@ -49,13 +54,13 @@ namespace viper {
 
 		//load the resource from file
 		res_t<T> resource = std::make_shared<T>();
-		if (resource->Load(name,name, std::forward<Arge>(arge)...) == false) {
+		if (resource->Load(name, std::forward<Arge>(arge)...) == false) {
 			std::cerr << "Failed to load resource: " << name << std::endl;
 			return res_t<T>{};
 		}
 
 		//add the resource to the map
-		m_resources[name] = resource;
+		m_resources[key] = resource;
 
 		return resource;
 	}
