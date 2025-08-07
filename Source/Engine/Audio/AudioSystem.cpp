@@ -1,5 +1,6 @@
 #include "AudioSystem.h"
 #include "../Core/StringHelper.h"
+#include "Core/Logger.h"
 #include <fmod_errors.h>
 #include <iostream>
 
@@ -11,7 +12,7 @@ namespace viper {
 	/// <returns>True if the FMOD operation was successful (FMOD_OK); otherwise, false.</returns>
 	bool AudioSystem::CheckFMODResult(FMOD_RESULT result) {
 		if (result != FMOD_OK) {
-			std::cerr << FMOD_ErrorString(result) << std::endl;
+			Logger::Error("", FMOD_ErrorString(result));
 			return false;
 		}
 
@@ -61,7 +62,7 @@ namespace viper {
 
 		// check if key exists in sounds map
 		if (m_sounds.find(key) != m_sounds.end()) {
-			std::cerr << "Audio System : name already exists " << key << std::endl;
+			Logger::Warning("Audio System : name already exists " , key );
 			return false;
 		}
 
@@ -83,7 +84,7 @@ namespace viper {
 
 		// check if sound exists in sounds map
 		if (m_sounds.find(key) == m_sounds.end()) {
-			std::cerr << "Audio System : name doesn't exists " << key << std::endl;
+			Logger::Warning("Audio System : name doesn't exists " , key);
 			return false;
 		}
 

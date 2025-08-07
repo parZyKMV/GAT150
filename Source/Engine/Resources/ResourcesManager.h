@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/StringHelper.h"
+#include "Core/Logger.h"
 #include "Core/Singleton.h"
 #include "Resources.h"
 #include <string>
@@ -45,7 +46,7 @@ namespace viper {
 			auto resource = std::dynamic_pointer_cast<T>(base);
 			// if the resource is not of type T, print an error message and return an empty res_t<T>
 			if (resource == nullptr) {
-				std::cerr << "Resource with name '" << key << "' is not of type " << typeid(T).name() << std::endl;
+				Logger::Warning("",key);
 				return res_t<T>{};
 			}
 			// if the resource is of type T, return it
@@ -55,7 +56,7 @@ namespace viper {
 		//load the resource from file
 		res_t<T> resource = std::make_shared<T>();
 		if (resource->Load(name, std::forward<Arge>(arge)...) == false) {
-			std::cerr << "Failed to load resource: " << name << std::endl;
+			Logger::Warning("",name);
 			return res_t<T>{};
 		}
 

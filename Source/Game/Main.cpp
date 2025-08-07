@@ -10,6 +10,7 @@
 #include "Audio/AudioSystem.h"
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
+#include "Core/Logger.h"
 #include "Core/File.h"
 #include "Resources/ResourcesManager.h"
 #include "Engine.h"
@@ -24,11 +25,10 @@
 #include <Renderer/Texture.h>
 
 int main(int argc, char* argv[]) {
+	viper::Logger::SetEnabledLevels(viper::LogLevel::Error);
 
     viper::file::SetCurrentDirectory("Assets");
     
-
-
     // initialize engine
     viper::GetEngine().Initialize();
 
