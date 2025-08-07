@@ -57,7 +57,7 @@ void SpaceGame::Update(float dt)
 
         // create player
         
-        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 5 };
+        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 1 };
         auto player = std::make_unique<Player>(transform, viper::Resourcess().Get<viper::Texture>("Textures/blue_01.png",viper::GetEngine().GetRenderer()));
         player->speed = 1500.0f;
         player->rotationRate = 180.0f;
@@ -143,7 +143,7 @@ void SpaceGame::SpawnEnemy() {
 
         // spawn at random position away from player
         viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
-        viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 5};
+        viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 1};
 
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, viper::Resourcess().Get<viper::Texture>("Textures/darkgrey_06.png", viper::GetEngine().GetRenderer()));
         enemy->damping = 0.5f;
