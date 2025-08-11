@@ -14,6 +14,7 @@
 
 #include <vector>
 
+
 bool SpaceGame::Initialize()
 {
     m_scene = std::make_unique<viper::Scene>(this);
@@ -40,31 +41,35 @@ void SpaceGame::Update(float dt)
         break;
 
     case SpaceGame::GameState::Title:
+        //viper::GetEngine().GetAudio().PlaySound("menu");
         if (viper::GetEngine().GetInput().GetKeyPressed(SDL_SCANCODE_SPACE)) {
             m_gameState = GameState::StartGame;
+
         }
         break;
 
     case SpaceGame::GameState::StartGame:
         m_score = 0;
         m_lives = 3;
+        viper::GetEngine().GetAudio().PlaySound("start-level");
         m_gameState = GameState::StartRound;
         break;
 
     case SpaceGame::GameState::StartRound:
     {
         m_scene->RemoveAllActors();
+        viper::GetEngine().GetAudio().PlaySound("battle");
 
         // create player
         
-        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 1 };
+        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 2 };
         auto player = std::make_unique<Player>(transform, viper::Resourcess().Get<viper::Texture>("Textures/blue_01.png",viper::GetEngine().GetRenderer()));
         player->speed = 1500.0f;
         player->rotationRate = 180.0f;
         player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
-
+		
         m_scene->AddActor(std::move(player));
         m_gameState = GameState::Game;
     }
@@ -92,6 +97,7 @@ void SpaceGame::Update(float dt)
         break;
     case SpaceGame::GameState::GameOver:
         m_stateTimer -= dt;
+        viper::GetEngine().GetAudio().PlaySound("gameover");
         if (m_stateTimer <= 0) {
             m_gameState = GameState::Title;
         }
@@ -114,6 +120,8 @@ void SpaceGame::Draw(viper::Renderer& renderer) {
     if (m_gameState == GameState::Title) {
         m_titleText->Create(renderer, "PIT VIPER", viper::vec3{ 1, 0, 0 });
         m_titleText->Draw(renderer, 400, 400);
+        m_titleText->Create(renderer, "REMASTERED", viper::vec3{ 1, 0, 0 });
+        m_titleText->Draw(renderer, 400, 430);
     }
     if (m_gameState == GameState::GameOver) {
         m_titleText->Create(renderer, "GAME OVER", viper::vec3{ 1, 0, 0 });
@@ -125,6 +133,17 @@ void SpaceGame::Draw(viper::Renderer& renderer) {
 
     m_livesText->Create(renderer, "LIVES  " + std::to_string(m_lives), {1, 1, 1});
     m_livesText->Draw(renderer, (float)(renderer.GetWidth() - 200), (float)20);
+
+	//show player energy
+    Player* player = m_scene->GetActorByName<Player>("player");
+    if (player) {
+        float energy = player->GetFireEnergy();  
+        std::string energyText = "ENERGY " + std::to_string(static_cast<int>(energy));
+
+        
+        m_scoreText->Create(renderer, energyText, { 0, 1, 1 });  
+        m_scoreText->Draw(renderer, 20, 70); 
+    }
 
     m_scene->Draw(renderer);
 
@@ -143,7 +162,7 @@ void SpaceGame::SpawnEnemy() {
 
         // spawn at random position away from player
         viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
-        viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 1};
+        viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 2};
 
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, viper::Resourcess().Get<viper::Texture>("Textures/darkgrey_06.png", viper::GetEngine().GetRenderer()));
         enemy->damping = 0.5f;

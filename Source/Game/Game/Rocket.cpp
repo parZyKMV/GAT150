@@ -21,8 +21,8 @@ void Rocket::Update(float dt)
     viper::Particle particle;
     particle.position = transform.position;
     particle.velocity = velocity;
-    particle.color = (tag == "enemy") ? viper::vec3{ 0, 1, 1 } : viper::vec3{ 1, 1, 0 };
-    particle.lifespan = viper::random::getReal(0.15f, 0.3f);
+    particle.color = (tag == "enemy") ? viper::vec3{ 1, 1, 0 } : viper::vec3{ 1, 0, 0 };
+    particle.lifespan = viper::random::getReal(0.10f, 0.10f);
 
     viper::GetEngine().GetPS().AddParticle(particle);
 

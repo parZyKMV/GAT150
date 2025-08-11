@@ -43,23 +43,38 @@ void Player::Update(float dt)
 
     // check fire key pressed
     fireTimer -= dt;
-    if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
-        fireTimer = fireTime;
+	isFiring = false;
+    if (fireEnergy > 5.0f) {
+        if (viper::GetEngine().GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && fireTimer <= 0) {
+            fireTimer = fireTime;
+			isFiring = true;
 
-        viper::GetEngine().GetAudio().PlaySound("clap");
+            viper::GetEngine().GetAudio().PlaySound("laser_effect");
 
-        
-        // spawn rocket at player position and rotation
-        viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-        auto rocket = std::make_unique<Rocket>(transform, viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
-        rocket->speed = 1500.0f;
-        rocket->lifespan = 1.5f;
-        rocket->name = "rocket";
-        rocket->tag = "player";
 
-        scene->AddActor(std::move(rocket));
+            // spawn rocket at player position and rotation
+            viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
+            auto rocket = std::make_unique<Rocket>(transform, viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
+            rocket->speed = 1500.0f;
+            rocket->lifespan = 1.5f;
+            rocket->name = "rocket";
+            rocket->tag = "player";
+
+            scene->AddActor(std::move(rocket));
+			fireEnergy -= 5.0f;
+            if (fireEnergy < 0) fireEnergy = 0;
+        }
+    }else{
+		canFire = true;
     }
 
+    if (!isFiring && fireEnergy < maxFireEnergy) {
+        fireEnergy += fireRechargeRate * dt;
+        if (fireEnergy > maxFireEnergy) {
+            fireEnergy = maxFireEnergy;
+        }
+    }
+    std::cout << "Fire Energy: " << fireEnergy << std::endl;
     Actor::Update(dt);
 }
 
@@ -67,6 +82,7 @@ void Player::OnCollision(Actor* other)
 {
     if (tag != other->tag) {
         destroyed = true;
+        viper::GetEngine().GetAudio().PlaySound("explosion");
         dynamic_cast<SpaceGame*>(scene->GetGame())->OnPlayerDeath();
     }
 }

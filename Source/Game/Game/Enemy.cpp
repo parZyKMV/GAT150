@@ -69,9 +69,15 @@ void Enemy::OnCollision(Actor* other)
             viper::Particle particle;
             particle.position = transform.position;
             particle.velocity = viper::random::onUnitCircle() * viper::random::getReal(10.0f, 200.0f);
-            particle.color = viper::vec3{ 1, 1, 1 };
+            if (i < 50) {
+                particle.color = viper::vec3{ 1.0f, 0.5f, 0.0f };
+            }
+            else {
+                particle.color = viper::vec3{ 1.0f, 1.0f, 0.0f };
+            }
             particle.lifespan = 2;
 
+            viper::GetEngine().GetAudio().PlaySound("explosion");
             viper::GetEngine().GetPS().AddParticle(particle);
         }
     }

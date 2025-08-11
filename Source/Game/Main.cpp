@@ -42,8 +42,15 @@ int main(int argc, char* argv[]) {
     viper::GetEngine().GetAudio().AddSound("clap.wav", "clap");
     viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
     viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
+	viper::GetEngine().GetAudio().AddSound("laser_effect.wav", "laser_effect");
+	viper::GetEngine().GetAudio().AddSound("explosion.wav", "explosion");
+	viper::GetEngine().GetAudio().AddSound("menu.wav", "menu");
+	viper::GetEngine().GetAudio().AddSound("battle.wav", "battle");
+	viper::GetEngine().GetAudio().AddSound("start-level.wav", "start-level");
+	viper::GetEngine().GetAudio().AddSound("gameover.wav", "gameover");
 
-	auto texture = viper::Resourcess().Get<viper::Texture>("Textures/blue_01.png", viper::GetEngine().GetRenderer());
+
+	
 
     // create stars
     std::vector<viper::vec2> stars;
@@ -77,8 +84,6 @@ int main(int argc, char* argv[]) {
         viper::GetEngine().GetRenderer().Clear();
 
 		rotate += 0.1f * viper::GetEngine().GetTime().GetDeltaTime();
-        
-        viper::GetEngine().GetRenderer().DrawTexture(texture.get(), 30, 30, 90, 4);
 
         game->Draw(viper::GetEngine().GetRenderer());
 
@@ -92,17 +97,5 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-/*
-    viper::vec2 speedz{ -140.0f, 0.0f };
-    float length = speedz.Length();
 
-    for (auto& star : stars) {
-        star += speedz * viper::GetEngine().GetTime().GetDeltaTime();
-
-        if (star[0] > 1280) star[0] = 0;
-        if (star[0] < 0) star[0] = 1280;
-
-        viper::GetEngine().GetRenderer().SetColor((uint8_t)viper::random::getRandomInt(256), viper::random::getRandomInt(256), viper::random::getRandomInt(256));
-        viper::GetEngine().GetRenderer().DrawPoint(star.x, star.y);
-    }
-*/
+    
