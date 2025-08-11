@@ -11,7 +11,9 @@ namespace viper {
 	void Scene::Update(float dt) {
 		// update all actors
 		for (auto& actor : m_actors) {
-			actor->Update(dt);
+			if (actor->isActive) {
+				actor->Update(dt);
+			}
 		}
 
 		// remove destroyed actors
@@ -45,7 +47,9 @@ namespace viper {
 	/// <param name="renderer">The renderer used to draw the actors.</param>
 	void Scene::Draw(Renderer& renderer) {
 		for (auto& actor : m_actors) {
-			actor->Draw(renderer);
+			if (actor->isActive) {
+				actor->Draw(renderer);
+			}
 		}
 	}
 

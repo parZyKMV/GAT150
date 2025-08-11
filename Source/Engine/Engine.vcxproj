@@ -94,6 +94,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -115,6 +118,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -134,6 +140,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -155,6 +164,9 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)Source\ThirdParty\SDL3\include;$(SolutionDir)Source\ThirdParty\fmod\core\inc;$(SolutionDir)Source\Engine</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>EnginePCH.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>EnginePCH.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -168,10 +180,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Componets\SpriteRenderer.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Singleton.h" />
     <ClCompile Include="Core\Time.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="EnginePCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Framework\Actor.cpp" />
     <ClCompile Include="Framework\Game.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
@@ -185,14 +204,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Componets\RendererComponent.h" />
+    <ClInclude Include="Componets\SpriteRenderer.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Logger.h" />
     <ClInclude Include="Core\Random.h" />
     <ClInclude Include="Core\StringHelper.h" />
     <ClInclude Include="Core\Time.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="EngineMinimal.h" />
+    <ClInclude Include="EnginePCH.h" />
     <ClInclude Include="Framework\Actor.h" />
+    <ClInclude Include="Framework\Component.h" />
     <ClInclude Include="Framework\Game.h" />
+    <ClInclude Include="Framework\Object.h" />
     <ClInclude Include="Framework\Scene.h" />
     <ClInclude Include="Input\InputSystem.h" />
     <ClInclude Include="Math\Math.h" />

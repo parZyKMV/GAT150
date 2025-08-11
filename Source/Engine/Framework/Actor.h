@@ -1,13 +1,13 @@
 #pragma once
+#include "Object.h"
 #include "Math/Transform.h"
 #include "Renderer/Texture.h"
 #include <string>
 #include <memory>
 
 namespace viper {
-	class Actor {
+	class Actor : public Object{
 	public:
-		std::string name;
 		std::string tag;
 
 		vec2 velocity{ 0, 0 };
