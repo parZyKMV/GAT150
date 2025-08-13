@@ -6,6 +6,7 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
 #include "Resources/ResourcesManager.h"
+#include "Componets/SpriteRenderer.h"
 #include "Input/InputSystem.h"
 #include "Engine.h"
 #include "Player.h"
@@ -63,12 +64,18 @@ void SpaceGame::Update(float dt)
         // create player
         
         viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 2 };
-        auto player = std::make_unique<Player>(transform, viper::Resourcess().Get<viper::Texture>("Textures/blue_01.png",viper::GetEngine().GetRenderer()));
+        auto player = std::make_unique<Player>(transform);
         player->speed = 1500.0f;
         player->rotationRate = 180.0f;
         player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
+
+        // Add sprite renderer component to the rocket
+        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+        spriteRenderer->textureId = "Textures/blue_01.png";
+
+        player->AddComponents(std::move(spriteRenderer));
 		
         m_scene->AddActor(std::move(player));
         m_gameState = GameState::Game;
@@ -164,12 +171,19 @@ void SpaceGame::SpawnEnemy() {
         viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
         viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 2};
 
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform, viper::Resourcess().Get<viper::Texture>("Textures/darkgrey_06.png", viper::GetEngine().GetRenderer()));
+        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform); 
         enemy->damping = 0.5f;
         enemy->fireTime = 3;
         enemy->fireTimer = 5;
         enemy->speed = (viper::random::getReal() * 200) + 100;
         enemy->tag = "enemy";
+
+        // Add sprite renderer component to the rocket
+        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+        spriteRenderer->textureId = "Textures/darkgrey_06.png";
+
+        enemy->AddComponents(std::move(spriteRenderer));
+
         m_scene->AddActor(std::move(enemy));
     }
 

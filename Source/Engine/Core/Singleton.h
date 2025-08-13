@@ -16,5 +16,4 @@ namespace viper {
 		Singleton() = default; // Private constructor to prevent instantiation
 
 	};
-
 }

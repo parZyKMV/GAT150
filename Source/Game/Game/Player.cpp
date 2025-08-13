@@ -8,6 +8,7 @@
 #include "Framework/Scene.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
+#include "Componets/SpriteRenderer.h"
 #include "Renderer/Model.h"
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
@@ -54,11 +55,17 @@ void Player::Update(float dt)
 
             // spawn rocket at player position and rotation
             viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
-            auto rocket = std::make_unique<Rocket>(transform, viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
+            auto rocket = std::make_unique<Rocket>(transform);// , viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
             rocket->speed = 1500.0f;
             rocket->lifespan = 1.5f;
             rocket->name = "rocket";
             rocket->tag = "player";
+
+            // Add sprite renderer component to the rocket
+            auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+            spriteRenderer->textureId = "Textures/projectile03-5.png";
+
+            rocket->AddComponents(std::move(spriteRenderer));
 
             scene->AddActor(std::move(rocket));
 			fireEnergy -= 5.0f;

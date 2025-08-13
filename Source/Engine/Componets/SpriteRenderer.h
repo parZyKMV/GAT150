@@ -1,5 +1,5 @@
 #pragma once
-#include "Framework/Component.h"
+#include "RendererComponent.h"
 
 namespace viper
 {
@@ -9,7 +9,7 @@ namespace viper
 		std::string textureId; // ID of the texture to render
 	public:
 		void Update(float dt) override;
-		void Draw(class Renderer& renderer) override;
+		void Draw(Renderer& renderer);
 	};
 
 }

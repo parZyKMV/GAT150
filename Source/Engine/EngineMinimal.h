@@ -4,8 +4,7 @@
 #include "Core/File.h"
 #include "Core/Logger.h"
 #include "Core/Random.h"
-#include "Core/Singleton.h"
-#include "Core/Time.h"
+#include "time.h"
 #include "Core/StringHelper.h"
 
 //framework
@@ -19,14 +18,14 @@
 #include "Math/Transform.h"
 #include "Math/Math.h"
 
-//renderer
-#include "Renderer/Renderer.h"
-#include "Renderer/Model.h"
-#include "Renderer/Texture.h"
+//resources
+#include "Resources/Resources.h"
+#include "Resources/ResourcesManager.h"
 
 //third-party
-#include <fmod.h>
+#include <fmod.hpp>
 #include <SDL3/SDL.h>
+#include <fmod_errors.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_ttf/SDL_ttf.h>
 
@@ -39,3 +38,8 @@
 #include <list>
 #include <algorithm>
 #include <chrono>
+#include <random>
+#include <cstdlib>
+#include <cmath>
+#include <filesystem>
+#include <fstream>

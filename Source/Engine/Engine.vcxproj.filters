@@ -175,5 +175,8 @@
     <ClInclude Include="Componets\SpriteRenderer.h">
       <Filter>Source\Componets</Filter>
     </ClInclude>
+    <ClInclude Include="Components\RigidBody.h">
+      <Filter>Source\Componets</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
