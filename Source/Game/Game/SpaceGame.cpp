@@ -7,6 +7,7 @@
 #include "Renderer/ParticleSystem.h"
 #include "Resources/ResourcesManager.h"
 #include "Componets/SpriteRenderer.h"
+#include "Componets/RigidBody.h"
 #include "Input/InputSystem.h"
 #include "Engine.h"
 #include "Player.h"
@@ -67,7 +68,7 @@ void SpaceGame::Update(float dt)
         auto player = std::make_unique<Player>(transform);
         player->speed = 1500.0f;
         player->rotationRate = 180.0f;
-        player->damping = 1.5f;
+        //player->damping = 1.5f;
         player->name = "player";
         player->tag = "player";
 
@@ -76,6 +77,10 @@ void SpaceGame::Update(float dt)
         spriteRenderer->textureId = "Textures/blue_01.png";
 
         player->AddComponents(std::move(spriteRenderer));
+
+		auto rb = std::make_unique<viper::RigidBody>();
+		rb->damping = 1.5f;
+		player->AddComponents(std::move(rb));
 		
         m_scene->AddActor(std::move(player));
         m_gameState = GameState::Game;
@@ -172,7 +177,7 @@ void SpaceGame::SpawnEnemy() {
         viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 2};
 
         std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform); 
-        enemy->damping = 0.5f;
+        //enemy->damping = 0.5f;
         enemy->fireTime = 3;
         enemy->fireTimer = 5;
         enemy->speed = (viper::random::getReal() * 200) + 100;
@@ -181,6 +186,10 @@ void SpaceGame::SpawnEnemy() {
         // Add sprite renderer component to the rocket
         auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
         spriteRenderer->textureId = "Textures/darkgrey_06.png";
+
+        auto rb = std::make_unique<viper::RigidBody>();
+        rb->damping = 0.5f;
+        enemy->AddComponents(std::move(rb));
 
         enemy->AddComponents(std::move(spriteRenderer));
 

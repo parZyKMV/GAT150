@@ -5,11 +5,11 @@
 #include "Framework/Actor.h"
 
 namespace viper {
-	void viper::SpriteRenderer::Update(float dt){
+	void SpriteRenderer::Update(float dt){
 		// Update logic for the sprite renderer can be added here if needed
 	}
 
-	void viper::SpriteRenderer::Draw(Renderer& renderer){
+	void SpriteRenderer::Draw(Renderer& renderer){
 		renderer.DrawTexture(Resourcess().Get<Texture>(textureId, renderer).get(), owner->transform.position.x, owner->transform.position.y);
 	}
 }

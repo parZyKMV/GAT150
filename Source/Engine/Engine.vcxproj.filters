@@ -9,9 +9,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source\Core">
-      <UniqueIdentifier>{04b892d7-25b3-4aff-a835-3ce2bf87cca0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Math">
       <UniqueIdentifier>{2fb6668b-50ca-45fd-b772-c5cc8ce10416}</UniqueIdentifier>
     </Filter>
@@ -32,6 +29,9 @@
     </Filter>
     <Filter Include="Source\Componets">
       <UniqueIdentifier>{941ac340-1fab-4bcc-81bd-567bc3765b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{04b892d7-25b3-4aff-a835-3ce2bf87cca0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -178,7 +178,7 @@
     <ClInclude Include="Componets\SpriteRenderer.h">
       <Filter>Source\Componets</Filter>
     </ClInclude>
-    <ClInclude Include="Components\RigidBody.h">
+    <ClInclude Include="Componets\RigidBody.h">
       <Filter>Source\Componets</Filter>
     </ClInclude>
   </ItemGroup>

@@ -10,10 +10,6 @@ namespace viper {
 	class Actor : public Object{
 	public:
 		std::string tag;
-
-		vec2 velocity{ 0, 0 };
-		float damping{ 0.0f };
-
 		bool destroyed{ false };
 		float lifespan{ 0 };
 
@@ -37,9 +33,35 @@ namespace viper {
 		// Add a component to the actor
 
 		void AddComponents(std::unique_ptr<Component> componets);
+		
+		template<typename T>
+		T* GetComponet();
+
+		template<typename T>
+		std::vector<T*> GetComponets();
 
 	protected:
 		//std::shared_ptr<Model> m_model;
 		std::vector<std::shared_ptr<Component>> m_components;
 	};
+	template<typename T>
+	inline T* Actor::GetComponet(){
+
+		for (auto& componet : m_components) {
+			auto result = dynamic_cast<T*>(componet.get());
+			if (result) return result;
+		}
+		return nullptr;
+	}
+	template<typename T>
+	inline std::vector<T*> Actor::GetComponets() {
+		std::vector<T*> results;
+		for (auto& componet : m_components) {
+			auto result = dynamic_cast<T*>(componet.get());
+			if (result) {
+				results.push_back(result);
+			}
+		}
+		return results;
+	}
 }

@@ -213,8 +213,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioSystem.h" />
-    <ClInclude Include="Components\RigidBody.h" />
     <ClInclude Include="Componets\RendererComponent.h" />
+    <ClInclude Include="Componets\RigidBody.h" />
     <ClInclude Include="Componets\SpriteRenderer.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Logger.h" />

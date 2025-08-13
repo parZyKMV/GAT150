@@ -4,6 +4,6 @@
 namespace viper{
 	class RendererComponent : public Component {
 	public:
-		void Draw(class Renderer& renderer);
+		virtual void Draw(class Renderer& renderer) = 0;
 	};
 }

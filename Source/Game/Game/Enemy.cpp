@@ -8,6 +8,7 @@
 #include "Renderer/ParticleSystem.h"
 #include "Resources/ResourcesManager.h"
 #include "Componets/SpriteRenderer.h"
+#include "Componets/RigidBody.h"
 #include "Player.h"
 #include "Rocket.h"
 #include "GameData.h"
@@ -37,7 +38,13 @@ void Enemy::Update(float dt)
     }
 
     viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(transform.rotation)) * speed;
-    velocity += force * dt;
+    //velocity += force * dt;
+	//GetComponet<viper::RigidBody>()->velocity += force * dt;
+
+	auto* rb = GetComponet<viper::RigidBody>();
+    if (rb) {
+        rb->velocity += force * dt;
+    }
 
     transform.position.x = viper::math::wrap(transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
     transform.position.y = viper::math::wrap(transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
@@ -58,8 +65,10 @@ void Enemy::Update(float dt)
 		// Add sprite renderer component to the rocket
         auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
         spriteRenderer->textureId = "Textures/projectile03-5.png";
-
 		rocket->AddComponents(std::move(spriteRenderer));
+
+        auto rb = std::make_unique<viper::RigidBody>();
+        rocket->AddComponents(std::move(rb));
 
         scene->AddActor(std::move(rocket));
     }
