@@ -9,7 +9,10 @@ namespace viper {
 
 		if (lifespan != 0) {
 			lifespan -= dt;
-			destroyed = lifespan <= 0;
+			if(lifespan <= 0) {
+				destroyed = true;
+				return; // Actor is destroyed, no further updates needed
+			}
 		}
 
 		for(auto& component : m_components) {

@@ -86,6 +86,9 @@
     <ClCompile Include="Componets\SpriteRenderer.cpp">
       <Filter>Source\Componets</Filter>
     </ClCompile>
+    <ClCompile Include="Componets\RigidBody.cpp">
+      <Filter>Source\Componets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
