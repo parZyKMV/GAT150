@@ -10,6 +10,7 @@
 #include "Audio/AudioSystem.h"
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
+#include "Core/Json.h"
 #include "Core/Logger.h"
 #include "Core/File.h"
 #include "Resources/ResourcesManager.h"
@@ -36,6 +37,33 @@ int main(int argc, char* argv[]) {
     std::unique_ptr<SpaceGame> game = std::make_unique<SpaceGame>();
     game->Initialize();
 
+    rapidjson::Document document;
+    if (!viper::json::Load("json.txt", document)) {
+        return -1;
+    }
+
+    // read/show the data from the json file
+    std::string name;
+    int age;
+    float speed;
+    bool isAwake;
+    viper::vec2 position;
+    viper::vec3 color;
+
+    // read the json data
+	
+    JSON_READ(document, name);
+    JSON_READ(document, age);
+    JSON_READ(document, speed);
+    JSON_READ(document, isAwake);
+    JSON_READ(document, position);
+    JSON_READ(document, color);
+
+    // show the data
+    std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+    std::cout << position.x << " " << position.y << std::endl;
+    std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
+
     // initialize sounds
     viper::GetEngine().GetAudio().AddSound("bass.wav", "bass");
     viper::GetEngine().GetAudio().AddSound("snare.wav", "snare");
@@ -48,9 +76,6 @@ int main(int argc, char* argv[]) {
 	viper::GetEngine().GetAudio().AddSound("battle.wav", "battle");
 	viper::GetEngine().GetAudio().AddSound("start-level.wav", "start-level");
 	viper::GetEngine().GetAudio().AddSound("gameover.wav", "gameover");
-
-
-	
 
     // create stars
     std::vector<viper::vec2> stars;

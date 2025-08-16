@@ -35,11 +35,6 @@ namespace viper {
 			}
 		}
 	}
-
-	float Actor::GetRadius()
-	{
-		return 50.0f;// (m_texture) ? m_texture->getSize().Length() * 0.5f * transform.scale * 0.9f : 0;
-	}
 	void Actor::AddComponents(std::unique_ptr<Component> componets)
 	{
 		componets->owner = this; // Set the owner of the component to this actor

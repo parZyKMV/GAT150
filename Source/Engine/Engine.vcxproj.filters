@@ -89,6 +89,12 @@
     <ClCompile Include="Componets\RigidBody.cpp">
       <Filter>Source\Componets</Filter>
     </ClCompile>
+    <ClCompile Include="Componets\CircleCollider2D.cpp">
+      <Filter>Source\Componets</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Json.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -180,6 +186,15 @@
     </ClInclude>
     <ClInclude Include="Componets\RigidBody.h">
       <Filter>Source\Componets</Filter>
+    </ClInclude>
+    <ClInclude Include="Componets\ColliderComponent.h">
+      <Filter>Source\Componets</Filter>
+    </ClInclude>
+    <ClInclude Include="Componets\CircleCollider2D.h">
+      <Filter>Source\Componets</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Json.h">
+      <Filter>Source\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

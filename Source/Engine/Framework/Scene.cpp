@@ -1,7 +1,8 @@
 #include "Scene.h"
 #include "Actor.h"
-#include "../Core/StringHelper.h"
-#include "../Renderer/Renderer.h"
+#include "Core/StringHelper.h"
+#include "Renderer/Renderer.h"
+#include "Componets/ColliderComponent.h"
 
 namespace viper {
 	/// <summary>
@@ -31,8 +32,14 @@ namespace viper {
 			for (auto& actorB : m_actors) {
 				if (actorA == actorB || (actorA->destroyed || actorB->destroyed)) continue;
 
-				float distance = (actorA->transform.position - actorB->transform.position).Length();
-				if (distance <= actorA->GetRadius() + actorB->GetRadius()) {
+				auto colliderA = actorA->GetComponet<ColliderComponent>();
+				auto colliderB = actorB->GetComponet<ColliderComponent>();
+
+				//make sure both actors have colliders
+				if (!colliderA || !colliderB) continue;
+
+				if(colliderA->CheckCollision(*colliderB)) {
+					// Collision detected, call OnCollision for both actors
 					actorA->OnCollision(actorB.get());
 					actorB->OnCollision(actorA.get());
 				}

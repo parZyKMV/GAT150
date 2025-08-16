@@ -10,6 +10,13 @@ namespace viper {
 	}
 
 	void SpriteRenderer::Draw(Renderer& renderer){
-		renderer.DrawTexture(Resourcess().Get<Texture>(textureId, renderer).get(), owner->transform.position.x, owner->transform.position.y);
+		auto texture = Resourcess().Get<Texture>(textureId, renderer).get();
+		if (texture) {
+			renderer.DrawTexture(*texture,
+				owner->transform.position.x,
+				owner->transform.position.y, 
+				owner->transform.rotation, 
+				owner->transform.scale);
+		}
 	}
 }
