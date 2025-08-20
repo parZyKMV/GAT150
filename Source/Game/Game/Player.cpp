@@ -9,11 +9,17 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/ParticleSystem.h"
 #include "Componets/SpriteRenderer.h"
+#include "Componets/CircleCollider2D.h"
 #include "Componets/RigidBody.h"
 #include "Renderer/Model.h"
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
+#include "Audio/AudioClip.h"
+#include "Resources/Resources.h"
 #include "Resources/ResourcesManager.h"
+#include "Core/Factory.h"
+
+FACTORY_REGISTER(Player)
 
 void Player::Update(float dt)
 {
@@ -55,8 +61,11 @@ void Player::Update(float dt)
             fireTimer = fireTime;
 			isFiring = true;
 
-            viper::GetEngine().GetAudio().PlaySound("laser_effect");
-
+            //viper::GetEngine().GetAudio().PlaySound("laser_effect");
+            auto sound = viper::Resourcess().Get<viper::AudioClip>("laser_effect.wav", viper::GetEngine().GetAudio()).get();
+            if (sound) {
+                viper::GetEngine().GetAudio().PlaySound(*sound);
+            }
 
             // spawn rocket at player position and rotation
             viper::Transform transform{ this->transform.position, this->transform.rotation, 2.0f };
@@ -73,6 +82,10 @@ void Player::Update(float dt)
 
             auto rb = std::make_unique<viper::RigidBody>();
             rocket->AddComponents(std::move(rb));
+
+            auto collider = std::make_unique<viper::CircleCollider2D>();
+            collider->radius = 10;
+            rocket->AddComponents(std::move(collider));
 
             scene->AddActor(std::move(rocket));
 			fireEnergy -= 5.0f;

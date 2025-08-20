@@ -1,8 +1,10 @@
 #include "CircleCollider2D.h"
 #include "Framework/Actor.h"
+#include "Core/Factory.h"
 
 
 namespace viper {
+	FACTORY_REGISTER(CircleCollider2D)
 	void  CircleCollider2D::Update(float dt)
 	{
 		// CircleCollider specific update logic can be added here

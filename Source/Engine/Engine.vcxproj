@@ -187,8 +187,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio\AudioClip.cpp" />
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Componets\AudioSource.cpp" />
     <ClCompile Include="Componets\CircleCollider2D.cpp" />
+    <ClCompile Include="Componets\MeshRenderer.cpp" />
     <ClCompile Include="Componets\RigidBody.cpp" />
     <ClCompile Include="Componets\SpriteRenderer.cpp" />
     <ClCompile Include="Core\File.cpp" />
@@ -214,12 +217,16 @@
     <ClCompile Include="Renderer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio\AudioClip.h" />
     <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Componets\AudioSource.h" />
     <ClInclude Include="Componets\CircleCollider2D.h" />
     <ClInclude Include="Componets\ColliderComponent.h" />
+    <ClInclude Include="Componets\MeshRenderer.h" />
     <ClInclude Include="Componets\RendererComponent.h" />
     <ClInclude Include="Componets\RigidBody.h" />
     <ClInclude Include="Componets\SpriteRenderer.h" />
+    <ClInclude Include="Core\Factory.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Json.h" />
     <ClInclude Include="Core\Logger.h" />
@@ -240,6 +247,7 @@
     <ClInclude Include="Math\Vector2.h" />
     <ClInclude Include="Math\Vector3.h" />
     <ClInclude Include="Renderer\Font.h" />
+    <ClInclude Include="Renderer\Mesh.h" />
     <ClInclude Include="Renderer\Model.h" />
     <ClInclude Include="Renderer\ParticleSystem.h" />
     <ClInclude Include="Renderer\Renderer.h" />

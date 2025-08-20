@@ -9,6 +9,6 @@ namespace viper {
 
 	public:
 		Object() = default;
-		~Object() = default;
+		virtual ~Object() = default;
 	};
 }

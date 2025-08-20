@@ -2,17 +2,22 @@
 #include "Core/StringHelper.h"
 #include "Core/Logger.h"
 #include "Core/Singleton.h"
+#include "Framework/Object.h"
 #include "Resources.h"
+#include <memory>
 #include <string>
 #include <map>
 
 namespace viper {
 	class ResourcesManager : public Singleton<ResourcesManager>{
 	public:
+		void Clear() { m_resources.clear(); }
 		template<typename T, typename ... Arge>
+		requires std::derived_from<T, Resources>
 		res_t<T> Get(const std::string& name, Arge&& ... arge);
 
 		template<typename T, typename ... Arge>
+		requires std::derived_from<T, Resources>
 		res_t<T> GetWIthId(const std::string& id, const std::string& name, Arge&& ... arge);
 
 		/*static ResourcesManager& Instance() {
@@ -28,12 +33,14 @@ namespace viper {
 	};
 
 	template<typename T, typename ... Arge>
+	requires std::derived_from<T, Resources>
 	inline res_t<T> ResourcesManager::Get(const std::string& name, Arge&& ... arge) {
 	
 		return GetWIthId<T>(name,name, std::forward<Arge>(arge)...);
 	}
 
 	template<typename T, typename ...Arge>
+	requires std::derived_from<T, Resources>
 	inline res_t<T> ResourcesManager::GetWIthId(const std::string& id, const std::string& name, Arge&& ... arge)
 	{
 		std::string key = tolower(id);

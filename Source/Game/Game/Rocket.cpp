@@ -6,6 +6,9 @@
 #include "Componets/RigidBody.h"
 #include "Core/Random.h"
 #include "Player.h"
+#include "Core/Factory.h"
+
+FACTORY_REGISTER(Rocket)
 
 void Rocket::Update(float dt)
 {

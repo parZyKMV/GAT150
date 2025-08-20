@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
 	viper::Logger::SetEnabledLevels(viper::LogLevel::Error);
 
     viper::file::SetCurrentDirectory("Assets");
+	viper::Logger::Info("Current directory: ");
     
     // initialize engine
     viper::GetEngine().Initialize();

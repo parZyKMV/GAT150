@@ -3,6 +3,8 @@
 #include "Input/InputSystem.h"
 #include "Audio/AudioSystem.h"
 #include "Renderer/ParticleSystem.h"
+#include "Resources/Resources.h"
+#include "Resources/ResourcesManager.h"
 
 namespace viper {
 
@@ -24,6 +26,10 @@ namespace viper {
 	}
 
 	void Engine::Shutdown() {
+		//release resources from resources manager
+		Resourcess().Clear();
+
+		//shutdown engine systems
 		m_particleSystem->Shutdown();
 		m_audio->Shutdown();
 		m_input->Shutdown();

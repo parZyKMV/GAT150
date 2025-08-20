@@ -1,10 +1,13 @@
 #include "RendererComponent.h"
 #include "Resources/ResourcesManager.h"
+#include "Core/Factory.h"
 #include "SpriteRenderer.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
 
 namespace viper {
+	FACTORY_REGISTER(SpriteRenderer)
+
 	void SpriteRenderer::Update(float dt){
 		// Update logic for the sprite renderer can be added here if needed
 	}
