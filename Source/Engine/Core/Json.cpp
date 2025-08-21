@@ -27,7 +27,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, int& data) {
+    bool Read(const value_t& value, const std::string& name, int& data) {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsInt()) {
             Logger::Error("Could not read Json value (int): {}.", name);
             return false;
@@ -36,7 +36,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, float& data) {
+    bool Read(const value_t& value, const std::string& name, float& data) {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsNumber()) {
             Logger::Error("Could not read Json value (float): {}.", name);
             return false;
@@ -45,7 +45,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, bool& data) {
+    bool Read(const value_t& value, const std::string& name, bool& data) {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsBool()) {
             Logger::Error("Could not read Json value (bool): {}.", name);
             return false;
@@ -54,7 +54,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, std::string& data) {
+    bool Read(const value_t& value, const std::string& name, std::string& data) {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString()) {
             Logger::Error("Could not read Json value (string): {}.", name);
             return false;
@@ -63,7 +63,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, vec2& data) {
+    bool Read(const value_t& value, const std::string& name, vec2& data) {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 2) {
             Logger::Error("Could not read Json value (vec2): {}.", name);
             return false;
@@ -80,7 +80,7 @@ namespace viper::json {
         return true;
     }
 
-    bool Read(const rapidjson::Value& value, const std::string& name, vec3& data) {
+    bool Read(const value_t& value, const std::string& name, vec3& data) {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsArray() || value[name.c_str()].Size() != 3) {
             Logger::Error("Could not read Json value (vec3): {}.", name);
             return false;

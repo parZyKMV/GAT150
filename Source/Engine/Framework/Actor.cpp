@@ -1,8 +1,10 @@
 #include "Actor.h"
 #include "Renderer/Renderer.h"
 #include "Componets/RendererComponent.h"
+#include "Core/Factory.h"
 
 namespace viper {
+	FACTORY_REGISTER(Actor);
 	void Actor::Update(float dt)
 	{
 		if (destroyed) return;

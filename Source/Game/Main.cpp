@@ -43,34 +43,29 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    // read/show the data from the json file
-    std::string name;
-    int age;
-    float speed;
-    bool isAwake;
-    viper::vec2 position;
-    viper::vec3 color;
+    //// read/show the data from the json file
+    //std::string name;
+    //int age;
+    //float speed;
+    //bool isAwake;
+    //viper::vec2 position;
+    //viper::vec3 color;
 
-    // read the json data
+    //// read the json data
 	
-    JSON_READ(document, name);
-    JSON_READ(document, age);
-    JSON_READ(document, speed);
-    JSON_READ(document, isAwake);
-    JSON_READ(document, position);
-    JSON_READ(document, color);
+    //JSON_READ(document, name);
+    //JSON_READ(document, age);
+    //JSON_READ(document, speed);
+    //JSON_READ(document, isAwake);
+    //JSON_READ(document, position);
+    //JSON_READ(document, color);
 
-    // show the data
-    std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
-    std::cout << position.x << " " << position.y << std::endl;
-    std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
+    //// show the data
+    //std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+    //std::cout << position.x << " " << position.y << std::endl;
+    //std::cout << color.r << " " << color.g << " " << color.b << " " << std::endl;
 
     // initialize sounds
-    viper::GetEngine().GetAudio().AddSound("bass.wav", "bass");
-    viper::GetEngine().GetAudio().AddSound("snare.wav", "snare");
-    viper::GetEngine().GetAudio().AddSound("clap.wav", "clap");
-    viper::GetEngine().GetAudio().AddSound("close-hat.wav", "close-hat");
-    viper::GetEngine().GetAudio().AddSound("open-hat.wav", "open-hat");
 	viper::GetEngine().GetAudio().AddSound("laser_effect.wav", "laser_effect");
 	viper::GetEngine().GetAudio().AddSound("explosion.wav", "explosion");
 	viper::GetEngine().GetAudio().AddSound("menu.wav", "menu");

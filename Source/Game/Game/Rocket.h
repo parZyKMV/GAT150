@@ -8,12 +8,8 @@ public:
 
 public:
 	Rocket() = default;
-	/*Rocket(const viper::Transform& transform) :
-		Actor{ transform }
-	{
-	}*/
-
+	
 	void Update(float dt) override;
 
-	void OnCollision(Actor* other);
+	void OnCollision(viper::Actor* other);
 };

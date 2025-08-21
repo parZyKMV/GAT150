@@ -1,0 +1,15 @@
+{
+  "actors": [
+    {
+      "name": "sprite",
+      "transform": {
+        "position": [400, 300],
+        "scale": 30,
+        "rotation": 2
+      }
+    },
+    {
+
+    }
+  ]
+}

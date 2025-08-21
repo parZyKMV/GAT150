@@ -62,10 +62,17 @@ namespace viper {
 		auto it = m_registry.find(key);
 		if(it != m_registry.end()) {
 			// Use the creator to create an object
-			return it->second->Create();
+			auto object = it->second->Create();
+			T* derived = dynamic_cast<T*>(object.get());
+			if (derived) {
+				object.release(); // Release ownership of the object to return a unique_ptr
+				return std::unique_ptr<T>(derived);
+			}
+			Logger::Error("Type mismatch of factory object: {}", name);
 		}
-		Logger::Error("Could not crate object: {}", name);
-
+		else {
+			Logger::Error("Could not crate factory object: {}", name);
+		}
 		return nullptr;
 	}
 }

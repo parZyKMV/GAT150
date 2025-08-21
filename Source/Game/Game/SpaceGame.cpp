@@ -10,6 +10,7 @@
 #include "Componets/RigidBody.h"
 #include "Componets/CircleCollider2D.h"
 #include "Input/InputSystem.h"
+#include "Framework/Actor.h"
 #include "Engine.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -65,28 +66,28 @@ void SpaceGame::Update(float dt)
 
         // create player
         
-        viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 2 };
-        auto player = std::make_unique<Player>(transform);
-        player->speed = 1500.0f;
-        player->rotationRate = 180.0f;
-        //player->damping = 1.5f;
-        player->name = "player";
-        player->tag = "player";
+  //      viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 2 };
+  //      auto player = std::make_unique<Player>(transform);
+  //      player->speed = 1500.0f;
+  //      player->rotationRate = 180.0f;
+  //      //player->damping = 1.5f;
+  //      player->name = "player";
+  //      player->tag = "player";
 
-        // Add sprite renderer component to the rocket
-        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        spriteRenderer->textureId = "Textures/blue_01.png";
-        player->AddComponents(std::move(spriteRenderer));
+  //      // Add sprite renderer component to the rocket
+  //      auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+  //      spriteRenderer->textureId = "Textures/blue_01.png";
+  //      player->AddComponents(std::move(spriteRenderer));
 
-		auto rb = std::make_unique<viper::RigidBody>();
-		rb->damping = 1.5f;
-		player->AddComponents(std::move(rb));
+		//auto rb = std::make_unique<viper::RigidBody>();
+		//rb->damping = 1.5f;
+		//player->AddComponents(std::move(rb));
 
-        auto collider = std::make_unique<viper::CircleCollider2D>();
-        collider->radius = 60; 
-		player->AddComponents(std::move(collider));
+  //      auto collider = std::make_unique<viper::CircleCollider2D>();
+  //      collider->radius = 60; 
+		//player->AddComponents(std::move(collider));
 
-        m_scene->AddActor(std::move(player));
+  //      m_scene->AddActor(std::move(player));
         m_gameState = GameState::Game;
     }
         break;
@@ -172,35 +173,35 @@ void SpaceGame::OnPlayerDeath() {
 }
 
 void SpaceGame::SpawnEnemy() {
-    Player* player = m_scene->GetActorByName<Player>("player");
-    if (player) {
-        
+    //Player* player = m_scene->GetActorByName<Player>("player");
+    //if (player) {
+    //    
 
-        // spawn at random position away from player
-        viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
-        viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 2};
+    //    // spawn at random position away from player
+    //    viper::vec2 position = player->transform.position + viper::random::onUnitCircle() * viper::random::getReal(200.0f, 500.0f);
+    //    viper::Transform transform{ position, viper::random::getReal(0.0f, 360.0f), 2};
 
-        std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform); 
-        //enemy->damping = 0.5f;
-        enemy->fireTime = 3;
-        enemy->fireTimer = 5;
-        enemy->speed = (viper::random::getReal() * 200) + 100;
-        enemy->tag = "enemy";
+    //    std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(transform); 
+    //    //enemy->damping = 0.5f;
+    //    enemy->fireTime = 3;
+    //    enemy->fireTimer = 5;
+    //    enemy->speed = (viper::random::getReal() * 200) + 100;
+    //    enemy->tag = "enemy";
 
-        // Add sprite renderer component to the rocket
-        auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-        spriteRenderer->textureId = "Textures/darkgrey_06.png";
-        auto rb = std::make_unique<viper::RigidBody>();
-        rb->damping = 0.5f;
-        enemy->AddComponents(std::move(rb));
-        enemy->AddComponents(std::move(spriteRenderer));
+    //    // Add sprite renderer component to the rocket
+    //    auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+    //    spriteRenderer->textureId = "Textures/darkgrey_06.png";
+    //    auto rb = std::make_unique<viper::RigidBody>();
+    //    rb->damping = 0.5f;
+    //    enemy->AddComponents(std::move(rb));
+    //    enemy->AddComponents(std::move(spriteRenderer));
 
-        auto collider = std::make_unique<viper::CircleCollider2D>();
-        collider->radius = 60;
-        enemy->AddComponents(std::move(collider));
+    //    auto collider = std::make_unique<viper::CircleCollider2D>();
+    //    collider->radius = 60;
+    //    enemy->AddComponents(std::move(collider));
 
-        m_scene->AddActor(std::move(enemy));
-    }
+    //    m_scene->AddActor(std::move(enemy));
+    //}
 
 }
 

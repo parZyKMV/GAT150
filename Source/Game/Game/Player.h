@@ -16,13 +16,10 @@ public:
 
 public:
 	Player() = default;
-	/*Player(const viper::Transform& transform) :
-		Actor{ transform }
-	{}*/
 	float GetFireEnergy() const { return fireEnergy; }
 
 
 	void Update(float dt) override;
 
-	void OnCollision(class Actor* other);
+	void OnCollision(class viper::Actor* other);
 };
