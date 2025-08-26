@@ -110,6 +110,9 @@
     <ClCompile Include="Framework\Object.cpp">
       <Filter>Source\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Mesh.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">

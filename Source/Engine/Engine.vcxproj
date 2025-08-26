@@ -212,6 +212,7 @@
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\Transform.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
+    <ClCompile Include="Renderer\Mesh.cpp" />
     <ClCompile Include="Renderer\Model.cpp" />
     <ClCompile Include="Renderer\ParticleSystem.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
