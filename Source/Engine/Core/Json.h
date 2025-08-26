@@ -6,6 +6,7 @@
 
 namespace viper::json {
 	using value_t = rapidjson::Value;
+	using document_t = rapidjson::Document;
 
     bool Load(const std::string& filename, rapidjson::Document& document);
 
@@ -18,4 +19,7 @@ namespace viper::json {
 }
 
 
-#define JSON_READ(value, data) viper::json::Read(value, #data, data)
+#define JSON_READ(value, data)                  viper::json::Read(value, #data, data)
+#define JSON_READ_NAME(value,name, data)        viper::json::Read(value, name, data)
+#define JSON_HAS(value, data)                   value.HasMember(#data)
+#define JSON_GET(value, data)                   value[#data]

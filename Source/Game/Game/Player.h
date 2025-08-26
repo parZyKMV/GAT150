@@ -18,8 +18,6 @@ public:
 	Player() = default;
 	float GetFireEnergy() const { return fireEnergy; }
 
-
 	void Update(float dt) override;
-
 	void OnCollision(class viper::Actor* other);
 };

@@ -42,4 +42,25 @@ namespace viper {
 		componets->owner = this; // Set the owner of the component to this actor
 		m_components.push_back(std::move(componets));
 	}
+	void Actor::Read(const json::value_t& value){
+		Object::Read(value);
+
+		JSON_READ(value, tag);
+		JSON_READ(value, lifespan);
+
+		if(JSON_HAS(value,transform)) transform.Read(JSON_GET(value,transform));
+
+		//read components
+		if (JSON_HAS(value, components)) {
+			for (auto& componentValue : JSON_GET(value, components).GetArray()) {
+				std::string type;
+				JSON_READ(componentValue, type);
+
+				auto component = Factory::Instance().Create<Component>(type);
+				component->Read(componentValue);
+
+				AddComponents(std::move(component));
+			}
+		}
+	}
 }

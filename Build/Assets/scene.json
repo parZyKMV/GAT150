@@ -2,11 +2,19 @@
   "actors": [
     {
       "name": "sprite",
+      "tag": "background",
+      "lifespan": 4,
       "transform": {
-        "position": [400, 300],
+        "position": [ 400, 300 ],
         "scale": 30,
         "rotation": 2
-      }
+      },
+      "components": [
+        {
+          "type": "SpriteRenderer",
+          "textureId": "Textures/space-background.png"
+        }
+      ]
     },
     {
 

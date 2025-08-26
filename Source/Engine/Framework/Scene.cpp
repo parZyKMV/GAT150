@@ -3,6 +3,7 @@
 #include "Core/StringHelper.h"
 #include "Renderer/Renderer.h"
 #include "Componets/ColliderComponent.h"
+#include "Core/Factory.h"
 
 namespace viper {
 	/// <summary>
@@ -73,5 +74,16 @@ namespace viper {
 	void Scene::RemoveAllActors()
 	{
 		m_actors.clear();
+	}
+	void Scene::Read(const json::value_t& value){
+		//read actors
+		if (JSON_HAS(value, actors)) {
+			for (auto& actorValue : JSON_GET(value, actors).GetArray()) {
+				auto actor = Factory::Instance().Create<Actor>("Actor");
+				actor->Read(actorValue);
+
+				AddActor(std::move(actor));
+			}
+		}
 	}
 }

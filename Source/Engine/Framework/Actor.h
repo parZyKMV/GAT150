@@ -3,6 +3,7 @@
 #include "Math/Transform.h"
 #include "Component.h"
 #include "Renderer/Texture.h"
+#include "Core/Serializable.h"
 #include <string>
 #include <memory>
 
@@ -10,11 +11,11 @@ namespace viper {
 	class Actor : public Object{
 	public:
 		std::string tag;
-		bool destroyed{ false };
 		float lifespan{ 0 };
 
-
 		Transform transform;
+		
+		bool destroyed{ false };
 		class Scene* scene{ nullptr };
 
 	public:
@@ -23,10 +24,12 @@ namespace viper {
 			transform{ transform }
 		{}
 
+		void Read(const json::value_t& value) override;
+
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 
-		virtual void OnCollision(Actor* other) = 0;
+		virtual void OnCollision(Actor* other) {}
 
 		//float GetRadius();
 		

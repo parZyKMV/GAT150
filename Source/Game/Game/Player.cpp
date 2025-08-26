@@ -103,7 +103,7 @@ void Player::Update(float dt)
        }
     }
     std::cout << "Fire Energy: " << fireEnergy << std::endl;*/
-    Actor::Update(dt);
+    //Actor::Update(dt);
 }
 
 void Player::OnCollision(viper::Actor* other)

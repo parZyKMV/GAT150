@@ -9,6 +9,7 @@
 #include "Componets/SpriteRenderer.h"
 #include "Componets/RigidBody.h"
 #include "Componets/CircleCollider2D.h"
+#include "Core/Json.h"
 #include "Input/InputSystem.h"
 #include "Framework/Actor.h"
 #include "Engine.h"
@@ -28,6 +29,10 @@ bool SpaceGame::Initialize()
 
     m_uiFont = std::make_shared<viper::Font>();
     m_uiFont->Load("arcadeclassic.ttf", 48);*/
+
+    viper::json::document_t document;
+	viper::json::Load("scene.json", document);
+	m_scene->Read(document);
 
     m_titleText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("title_font", "arcadeclassic.ttf", 48));
     m_scoreText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("ui_font", "arcadeclassic.ttf", 48));
