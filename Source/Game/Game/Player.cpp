@@ -115,3 +115,11 @@ void Player::OnCollision(viper::Actor* other)
     }
 }
 
+void Player::Read(const viper::json::value_t& value){
+	Object::Read(value);
+
+	JSON_READ(value, speed);
+	JSON_READ(value, rotationRate);
+	JSON_READ(value, fireTime);
+}
+

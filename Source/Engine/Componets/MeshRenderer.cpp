@@ -3,14 +3,14 @@
 #include "Core/Factory.h"
 
 namespace viper {
-	//FACTORY_REGISTER(MeshRenderer)
-	/*void Meshrenderer::Update(float dt) {
+	FACTORY_REGISTER(MeshRenderer)
+	void MeshRenderer::Update(float dt) {
 	}
 
-	void Meshrenderer::Draw(Renderer& renderer) {
-		auto mesh = Resourcess().get<Mesh>(meshName);
+	void MeshRenderer::Draw(Renderer& renderer) {
+		/*auto mesh = Resourcess().get<Mesh>(meshName);
 		if (m_mesh) {
 			renderer.DrawMesh(m_mesh, transform);
-		}
-	}*/
+		}*/
+	}
 }

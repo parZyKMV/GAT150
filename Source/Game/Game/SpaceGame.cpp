@@ -68,31 +68,6 @@ void SpaceGame::Update(float dt)
     {
         m_scene->RemoveAllActors();
         viper::GetEngine().GetAudio().PlaySound("battle");
-
-        // create player
-        
-  //      viper::Transform transform{ viper::vec2{ viper::GetEngine().GetRenderer().GetWidth() * 0.5f, viper::GetEngine().GetRenderer().GetHeight() * 0.5f }, 0, 2 };
-  //      auto player = std::make_unique<Player>(transform);
-  //      player->speed = 1500.0f;
-  //      player->rotationRate = 180.0f;
-  //      //player->damping = 1.5f;
-  //      player->name = "player";
-  //      player->tag = "player";
-
-  //      // Add sprite renderer component to the rocket
-  //      auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
-  //      spriteRenderer->textureId = "Textures/blue_01.png";
-  //      player->AddComponents(std::move(spriteRenderer));
-
-		//auto rb = std::make_unique<viper::RigidBody>();
-		//rb->damping = 1.5f;
-		//player->AddComponents(std::move(rb));
-
-  //      auto collider = std::make_unique<viper::CircleCollider2D>();
-  //      collider->radius = 60; 
-		//player->AddComponents(std::move(collider));
-
-  //      m_scene->AddActor(std::move(player));
         m_gameState = GameState::Game;
     }
         break;
@@ -139,6 +114,9 @@ void SpaceGame::Update(float dt)
 }
 
 void SpaceGame::Draw(viper::Renderer& renderer) {
+	m_scene->Draw(renderer);
+
+
     if (m_gameState == GameState::Title) {
         m_titleText->Create(renderer, "PIT VIPER", viper::vec3{ 1, 0, 0 });
         m_titleText->Draw(renderer, 400, 400);

@@ -26,6 +26,6 @@ namespace viper {
 	void SpriteRenderer::Read(const json::value_t& value){
 		Object::Read(value);
 
-		JSON_READ_NAME(value,"texturId", textureId);
+		JSON_READ_NAME(value,"texture_name", textureId);
 	}
 }

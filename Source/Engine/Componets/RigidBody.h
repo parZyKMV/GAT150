@@ -9,5 +9,7 @@ namespace viper {
 		float damping{ 0 };
 	public:
 		void Update(float dt) override;
+
+		void Read(const json::value_t& value) override;
 	};
 }
