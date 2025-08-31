@@ -12,6 +12,7 @@ namespace viper {
 	public:
 		std::string tag;
 		float lifespan{ 0 };
+		bool persistent{ false };
 
 		Transform transform;
 		
@@ -23,9 +24,14 @@ namespace viper {
 		Actor(const Transform& transform) :
 			transform{ transform }
 		{}
+		Actor(const Actor& other);
+
+		CLASS_PROTOTYPE(Actor)
 
 		void Read(const json::value_t& value) override;
 
+		virtual void Start();
+		virtual void Destroyed();
 		virtual void Update(float dt);
 		virtual void Draw(class Renderer& renderer);
 

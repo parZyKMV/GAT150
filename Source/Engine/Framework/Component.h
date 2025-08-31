@@ -7,6 +7,9 @@ namespace viper {
 		class Actor* owner{ nullptr }; // Pointer to the actor that owns this component
 	public:
 		Component() = default;
+
+		virtual void Start() {}
+		virtual void Destroyed() {}
 		virtual void Update(float dt) = 0;
 
 	};

@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "Core/File.h"
 #include "Core/Logger.h"
+#include <iostream>
 
 namespace viper {
 	bool Mesh::Load(const std::string& filename)

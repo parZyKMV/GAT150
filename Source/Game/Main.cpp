@@ -83,9 +83,6 @@ int main(int argc, char* argv[]) {
     SDL_Event e;
     bool quit = false;
 
-	/*std::shared_ptr<viper::Texture> texture = std::make_shared<viper::Texture>();
-	texture->Load("Idle_player1_2.png", viper::GetEngine().GetRenderer());*/
-
 	float rotate = 0.0f;
     // MAIN LOOP
     while (!quit) {

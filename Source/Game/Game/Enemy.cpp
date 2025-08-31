@@ -20,49 +20,52 @@
 
 FACTORY_REGISTER(Enemy)
 
-void Enemy::Update(float dt)
-{
- //   bool playerSeen = false;
+void Enemy::Start(){
+    m_rigidBody = owner->GetComponet<viper::RigidBody>();
+}
 
- //   Actor* player = owner->scene->GetActorByName<Actor>("player");
- //   if (player) {
- //       viper::vec2 direction{ 0, 0 };
- //       direction = player->transform.position - owner->transform.position;
+void Enemy::Update(float dt) {
+    bool playerSeen = false;
 
- //       direction = direction.Normalized();
- //       viper::vec2 forward = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation));
+    auto player = owner->scene->GetActorByName<viper::Actor>("player");
+    if (player) {
+        viper::vec2 direction{ 0, 0 };
+        direction = player->transform.position - owner->transform.position;
 
- //       float angle = viper::math::radToDeg(viper::vec2::AngleBetween(forward, direction));
- //       playerSeen = angle <= 30;
+        direction = direction.Normalized();
+        viper::vec2 forward = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation));
 
- //       if (playerSeen) {
- //           float angle = viper::vec2::SignedAngleBetween(forward, direction);
- //           angle = viper::math::sign(angle);
- //           owner->transform.rotation += viper::math::radToDeg(angle * 5 * dt);
- //       }
- //   }
+        float angle = viper::math::radToDeg(viper::vec2::AngleBetween(forward, direction));
+        playerSeen = angle <= 30;
 
- //   viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation)) * speed;
- //   //velocity += force * dt;
-	////GetComponet<viper::RigidBody>()->velocity += force * dt;
+        if (playerSeen) {
+             float angle = viper::vec2::SignedAngleBetween(forward, direction);
+             angle = viper::math::sign(angle);
+             owner->transform.rotation += viper::math::radToDeg(angle * 5 * dt);
+        }
+    }
 
-	//auto* rb = owner->GetComponet<viper::RigidBody>();
- //   if (rb) {
- //       rb->velocity += force * dt;
- //   }
+    viper::vec2 force = viper::vec2{ 1, 0 }.Rotate(viper::math::degToRad(owner->transform.rotation)) * speed;
+    //velocity += force * dt;
+    //GetComponet<viper::RigidBody>()->velocity += force * dt;
 
- //   owner->transform.position.x = viper::math::wrap(owner->transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
- //   owner->transform.position.y = viper::math::wrap(owner->transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
+    auto* rb = owner->GetComponet<viper::RigidBody>();
+    if (rb) {
+       rb->velocity += force * dt;
+    }
 
- //   // check fire
- //   fireTimer -= dt;
- //   if (fireTimer <= 0 && playerSeen) {
- //       fireTimer = fireTime;
+    owner->transform.position.x = viper::math::wrap(owner->transform.position.x, 0.0f, (float)viper::GetEngine().GetRenderer().GetWidth());
+    owner->transform.position.y = viper::math::wrap(owner->transform.position.y, 0.0f, (float)viper::GetEngine().GetRenderer().GetHeight());
 
- //       // spawn rocket at player position and rotation
- //       viper::Transform transform{owner->transform.position,owner->transform.rotation, 2.0f };
- //       auto rocket = std::make_unique<Actor>(transform);// , viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
- //       rocket->speed = 500.0f;
+    // check fire
+    //fireTimer -= dt;
+    //if (fireTimer <= 0 && playerSeen) {
+        //fireTimer = fireTime;
+
+        // spawn rocket at player position and rotation
+        //viper::Transform transform{owner->transform.position,owner->transform.rotation, 2.0f };
+        //auto rocket = viper::Instantiate("rocket",transform);// , viper::Resourcess().Get<viper::Texture>("Textures/projectile03-5.png", viper::GetEngine().GetRenderer()));
+        //rocket->speed = 500.0f;
  //       rocket->owner->lifespan = 1.5f;
  //       rocket->name = "rocket";
  //       rocket->owner->tag = "enemy";
@@ -85,8 +88,7 @@ void Enemy::Update(float dt)
  //   Actor::Update(dt);
 }
 
-void Enemy::OnCollision(viper::Actor* other)
-{
+void Enemy::OnCollision(viper::Actor* other) {
     if (owner->tag != other->tag) {
         owner->destroyed = true;
         owner->scene->GetGame()->AddPoints(100);
@@ -104,6 +106,15 @@ void Enemy::OnCollision(viper::Actor* other)
 
             viper::GetEngine().GetAudio().PlaySound("explosion");
             viper::GetEngine().GetPS().AddParticle(particle);
-        }
-    }
+        };
+    };
 }
+
+void Player::Read(const viper::json::value_t& value) {
+    Object::Read(value);
+
+    JSON_READ(value, speed);
+    JSON_READ(value, rotationRate);
+    JSON_READ(value, fireTime);
+}
+

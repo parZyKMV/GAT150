@@ -7,6 +7,8 @@ namespace viper {
 		std::string meshName;
 
 	public:
+		CLASS_PROTOTYPE(MeshRenderer)
+
 		void Update(float dt) override;
 		void Draw(Renderer& renderer) override;
 	};

@@ -16,11 +16,12 @@ namespace viper {
 
 		void Read(const json::value_t& value) override;
 
+		bool Load(const std::string& sceneName);
 		void Update(float dt);
 		void Draw(class Renderer& renderer);
 
-		void AddActor(std::unique_ptr<Actor> actor);
-		void RemoveAllActors();
+		void AddActor(std::unique_ptr<Actor> actor, bool start = true);
+		void RemoveAllActors(bool force = false);
 
 		template<typename T = Actor>
 		T* GetActorByName(const std::string& name);

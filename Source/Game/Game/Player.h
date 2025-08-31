@@ -1,5 +1,6 @@
 #pragma once
 #include "Framework/Component.h"
+#include "Componets/RigidBody.h"
 
 
 class Player : public viper::Component {
@@ -14,8 +15,13 @@ public:
 	const float maxFireEnergy = 100.0f;     
 	const float fireRechargeRate = 2.5f;   
 
+	viper::RigidBody* m_rigidBody{ nullptr };
+
 public:
 	Player() = default;
+
+	CLASS_PROTOTYPE(Player)
+
 	float GetFireEnergy() const { return fireEnergy; }
 
 	void Update(float dt) override;

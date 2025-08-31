@@ -4,9 +4,14 @@
 #include "SpriteRenderer.h"
 #include "Renderer/Renderer.h"
 #include "Framework/Actor.h"
+#include "Engine.h"
 
 namespace viper {
 	FACTORY_REGISTER(SpriteRenderer)
+
+	void SpriteRenderer::Start() {
+		texture = Resourcess().Get<Texture>(textureId, GetEngine().GetRenderer());
+	}
 
 	void SpriteRenderer::Update(float dt){
 		// Update logic for the sprite renderer can be added here if needed
