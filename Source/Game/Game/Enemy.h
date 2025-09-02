@@ -8,6 +8,7 @@ public:
 	float speed = 200;
 	float fireTimer = 0;
 	float fireTime = 0;
+	float rotationRate = 90;
 
 	viper::RigidBody* m_rigidBody{nullptr};
 

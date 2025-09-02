@@ -2,6 +2,7 @@
 #include "RendererComponent.h"
 #include "Core/Serializable.h"
 #include "Renderer/Texture.h"
+#include "Math/Rect.h"
 
 
 namespace viper

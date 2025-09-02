@@ -110,7 +110,7 @@ void Enemy::OnCollision(viper::Actor* other) {
     };
 }
 
-void Player::Read(const viper::json::value_t& value) {
+void Enemy::Read(const viper::json::value_t& value) {
     Object::Read(value);
 
     JSON_READ(value, speed);
