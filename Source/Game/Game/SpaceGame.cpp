@@ -9,6 +9,8 @@
 #include "Componets/SpriteRenderer.h"
 #include "Componets/RigidBody.h"
 #include "Componets/CircleCollider2D.h"
+#include "Renderer/Animator.h"
+#include "Renderer/TextureAnimation.h"
 #include "Core/Factory.h"
 #include "Core/Json.h"
 #include "Input/InputSystem.h"
@@ -29,6 +31,27 @@ bool SpaceGame::Initialize()
     m_titleText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("title_font", "arcadeclassic.ttf", 48));
     m_scoreText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("ui_font", "arcadeclassic.ttf", 48));
     m_livesText = std::make_unique<viper::Text>(viper::Resourcess().GetWIthId<viper::Font>("ui_font","arcadeclassic.ttf", 48));
+
+    auto bat = std::make_unique<viper::Actor>();
+    bat->name = "bat";
+    bat->tag = "enemy";
+    bat->transform.position = { 740, 500 };
+    bat->transform.scale = 3;
+
+    // SpriteRenderer
+    auto spriteRenderer = std::make_unique<viper::SpriteRenderer>();
+    bat->AddComponents(std::move(spriteRenderer));
+
+    // Animator
+    auto animator = std::make_unique<viper::Animator>();
+    bat->AddComponents(std::move(animator));
+
+    // O si tienes que cargar animación manual, no inventes json aquí,
+    // mejor usa un archivo json de prototipo o llama animator->Read()
+    // con el value_t real cargado desde archivo.
+
+    m_scene->AddActor(std::move(bat), true); // usa AddActor, no Add
+
         
     return true;
 }

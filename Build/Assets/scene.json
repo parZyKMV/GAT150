@@ -4,10 +4,7 @@
       "name": "player",
       "tag": "player",
       "transform": {
-        "position": [
-          640,
-          512
-        ],
+        "position": [ 640, 512 ],
         "rotation": 0,
         "scale": 2
       },
@@ -25,10 +22,7 @@
         {
           "type": "RigidBody",
           "damping": 1.5,
-          "velocity": [
-            0,
-            0
-          ]
+          "velocity": [ 0, 0 ]
         },
         {
           "type": "CircleCollider2D",
@@ -40,10 +34,7 @@
       "name": "enemy",
       "tag": "enemy",
       "transform": {
-        "position": [
-          840,
-          612
-        ],
+        "position": [ 840, 612 ],
         "rotation": 0,
         "scale": 2
       },
@@ -61,10 +52,7 @@
         {
           "type": "RigidBody",
           "damping": 1.5,
-          "velocity": [
-            0,
-            0
-          ]
+          "velocity": [ 0, 0 ]
         },
         {
           "type": "CircleCollider2D",
@@ -79,10 +67,7 @@
       "tag": "background",
       "persistent": true,
       "transform": {
-        "position": [
-          640,
-          512
-        ],
+        "position": [ 640, 512 ],
         "rotation": 0,
         "scale": 2
       },
@@ -90,6 +75,27 @@
         {
           "type": "SpriteRenderer",
           "texture_name": "textures/space-background.jpg"
+        }
+      ]
+    },
+    {
+      "name": "bat",
+      "tag": "enemy",
+      "transform": {
+        "position": [ 740, 500 ],
+        "rotation": 0,
+        "scale": 3
+      },
+      "components": [
+        { "type": "SpriteRenderer" },
+        {
+          "type": "Animator",
+          "animations": [
+            {
+              "name": "idle",
+              "texture_animation": "animations/bat_idle.json"
+            }
+          ]
         }
       ]
     }

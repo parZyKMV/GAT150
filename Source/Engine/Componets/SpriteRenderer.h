@@ -10,6 +10,7 @@ namespace viper
 	public:
 		std::string textureId; // ID of the texture to render
 		res_t<Texture> texture;
+		rect textureRect;
 
 	public:
 		CLASS_PROTOTYPE(SpriteRenderer)

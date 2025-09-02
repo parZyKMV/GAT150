@@ -3,6 +3,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 #include <SDL3_image/SDL_image.h>
 #include <iostream>
+#include "Math/Rect.h"
 
 namespace viper {
 	class Renderer
@@ -26,6 +27,8 @@ namespace viper {
 
 		void DrawTexture(class Texture& texture, float x, float y);
 		void DrawTexture(class Texture& texture, float x, float y, float angle, float sclae);
+		void DrawTexture(class Texture& texture, const rect& sourceRect,
+			float x, float y, float angle, float scale = 1);
 
 		int GetWidth() const { return m_width; }
 		int GetHeight() const { return m_height; }

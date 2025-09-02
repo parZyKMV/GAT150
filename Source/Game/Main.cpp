@@ -10,6 +10,8 @@
 #include "Audio/AudioSystem.h"
 #include "Framework/Actor.h"
 #include "Framework/Scene.h"
+#include "Framework/Component.h"
+#include "Componets/SpriteRenderer.h"
 #include "Core/Json.h"
 #include "Core/Logger.h"
 #include "Core/File.h"

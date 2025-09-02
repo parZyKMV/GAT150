@@ -11,6 +11,9 @@
     <Filter Include="Assets">
       <UniqueIdentifier>{bc669a82-3b80-4be7-84f0-358c09e28683}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets\Animations">
+      <UniqueIdentifier>{1b594c89-b301-4d1a-b899-a34ac7d78edd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -58,6 +61,9 @@
   <ItemGroup>
     <None Include="..\..\Build\Assets\scene.json">
       <Filter>Assets</Filter>
+    </None>
+    <None Include="Animations\bat_idle.json">
+      <Filter>Assets\Animations</Filter>
     </None>
   </ItemGroup>
 </Project>
