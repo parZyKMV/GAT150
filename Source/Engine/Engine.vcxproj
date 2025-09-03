@@ -194,6 +194,8 @@
     <ClCompile Include="Componets\MeshRenderer.cpp" />
     <ClCompile Include="Componets\RigidBody.cpp" />
     <ClCompile Include="Componets\SpriteRenderer.cpp" />
+    <ClCompile Include="Componets\Tilemap.cpp" />
+    <ClCompile Include="Componets\TilemapRenderer.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Json.cpp" />
     <ClCompile Include="Core\Singleton.h" />
@@ -230,6 +232,8 @@
     <ClInclude Include="Componets\RendererComponent.h" />
     <ClInclude Include="Componets\RigidBody.h" />
     <ClInclude Include="Componets\SpriteRenderer.h" />
+    <ClInclude Include="Componets\Tilemap.h" />
+    <ClInclude Include="Componets\TilemapRenderer.h" />
     <ClInclude Include="Core\Factory.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Json.h" />

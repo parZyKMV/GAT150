@@ -92,7 +92,22 @@ namespace viper {
             &srcRect, &destRect, angle, NULL, SDL_FLIP_NONE);
     }
 
+    void Renderer::DrawTexture(Texture& texture, const rect& sourceRect, float x, float y, float angle, float scale) {
+        // convert rect to SDL_FRect
+        SDL_FRect srcRect;
+        srcRect.x = sourceRect.x;
+        srcRect.y = sourceRect.y;
+        srcRect.w = sourceRect.w;
+        srcRect.h = sourceRect.h;
 
+        SDL_FRect destRect;
+        destRect.w = srcRect.w * scale;
+        destRect.h = srcRect.h * scale;
+        destRect.x = x - destRect.w * 0.5f;
+        destRect.y = y - destRect.h * 0.5f;
+
+        SDL_RenderTextureRotated(m_renderer, texture.m_texture, &srcRect, &destRect, angle, NULL, SDL_FLIP_NONE);
+    }
 
     void Renderer::SetColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
     {

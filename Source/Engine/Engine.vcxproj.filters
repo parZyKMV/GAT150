@@ -119,6 +119,12 @@
     <ClCompile Include="Physics\Physics.cpp">
       <Filter>Source\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Componets\TilemapRenderer.cpp">
+      <Filter>Source\Componets</Filter>
+    </ClCompile>
+    <ClCompile Include="Componets\Tilemap.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Random.h">
@@ -248,6 +254,12 @@
       <Filter>Source\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\Animator.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Componets\TilemapRenderer.h">
+      <Filter>Source\Componets</Filter>
+    </ClInclude>
+    <ClInclude Include="Componets\Tilemap.h">
       <Filter>Source\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
